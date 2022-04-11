@@ -23,6 +23,7 @@ def asprop(e, z, λ, d):
     dx, dy = d
     
     # get k-grid (spatial frequency); real mode:propagating; complex mode: evanescent
+    k = 2 * np.pi / λ
     k_x = np.fft.fftshift(np.fft.fftfreq(n=nx, d=dx) * 2 * np.pi)
     k_y = np.fft.fftshift(np.fft.fftfreq(n=ny, d=dy) * 2 * np.pi)
     k_Y, k_X = np.meshgrid(k_y, k_x, indexing='xy')
@@ -35,3 +36,7 @@ def asprop(e, z, λ, d):
     ez = np.fft.ifft2(np.fft.ifftshift(Ez))
     
     return ez[::-1]
+
+if __name == "__main__":
+#     e = import the complex aperture here
+    f = asprop(e, z, λ, d)
